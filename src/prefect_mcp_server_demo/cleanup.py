@@ -155,7 +155,7 @@ async def preview_old_flow_runs(config: RetentionConfig) -> dict:
         }
 
 
-@task
+@flow
 async def get_cleanup_approval(
     config: RetentionConfig, preview: dict
 ) -> tuple[bool, str | None]:
