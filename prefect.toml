@@ -1,0 +1,3 @@
+# project-level prefect settings
+[logging]
+level = "INFO"

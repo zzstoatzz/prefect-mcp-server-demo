@@ -1,0 +1,12 @@
+[project]
+name = "prefect-mcp-server-demo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "zzstoatzz", email = "thrast36@gmail.com" }]
+requires-python = ">=3.14"
+dependencies = ["pydantic-ai[prefect]>=1.16.0"]
+
+[build-system]
+requires = ["uv_build>=0.9.2,<0.10.0"]
+build-backend = "uv_build"

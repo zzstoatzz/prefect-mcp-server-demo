@@ -1,0 +1,46 @@
+# generic metadata
+name: prefect-mcp-server-demo
+prefect-version: null
+
+# preparation steps
+build: null
+push: null
+
+# runtime steps
+pull:
+- prefect.deployments.steps.set_working_directory:
+    directory: /Users/nate/github.com/zzstoatzz/prefect-mcp-server-demo
+
+# deployment configurations
+deployments:
+  - name: github-stars-deployment
+    entrypoint: src/prefect_mcp_server_demo/get_stars.py:github_stars
+    work_pool:
+      name: default
+    parameters:
+      repos:
+        - PrefectHQ/prefect
+        - PrefectHQ/prefect-mcp-server
+    schedule:
+      interval: 3600  # run every hour
+    description: fetches github star counts for prefect repositories
+
+  - name: database-cleanup-deployment
+    entrypoint: src/prefect_mcp_server_demo/cleanup.py:database_cleanup_entry
+    work_pool:
+      name: default
+    parameters:
+      config:
+        retention_period: "PT5M"  # ISO 8601: PT5M=5min, PT1H=1hr, P1D=1day, P7D=7days
+        entity_types:
+          - flow_runs
+        states_to_clean:
+          - Completed
+          - Failed
+          - Cancelled
+        batch_size: 100
+        rate_limit_delay: 0.5
+        dry_run: false
+    schedule:
+      cron: "0 2 * * *"  # run daily at 2am
+    description: cleans up old flow runs from the database
