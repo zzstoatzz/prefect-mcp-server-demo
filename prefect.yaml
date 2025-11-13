@@ -8,8 +8,9 @@ push: null
 
 # runtime steps
 pull:
-- prefect.deployments.steps.set_working_directory:
-    directory: /Users/nate/github.com/zzstoatzz/prefect-mcp-server-demo
+- prefect.deployments.steps.git_clone:
+    repository: https://github.com/zzstoatzz/prefect-mcp-server-demo.git
+    branch: main
 
 # deployment configurations
 deployments:
