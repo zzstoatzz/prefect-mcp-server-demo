@@ -32,7 +32,7 @@ deployments:
       name: default
       job_variables:
         env:
-          ANTHROPIC_API_KEY: {{ $ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: "{{ $ANTHROPIC_API_KEY }}"
     parameters:
       config:
         retention_period: "PT5M"  # ISO 8601: PT5M=5min, PT1H=1hr, P1D=1day, P7D=7days
