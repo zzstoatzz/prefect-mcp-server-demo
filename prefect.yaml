@@ -30,6 +30,9 @@ deployments:
     entrypoint: src/prefect_mcp_server_demo/cleanup.py:database_cleanup_entry
     work_pool:
       name: default
+      job_variables:
+        env:
+          ANTHROPIC_API_KEY: {{ $ANTHROPIC_API_KEY }}
     parameters:
       config:
         retention_period: "PT5M"  # ISO 8601: PT5M=5min, PT1H=1hr, P1D=1day, P7D=7days
@@ -45,3 +48,4 @@ deployments:
     schedule:
       cron: "0 2 * * *"  # run daily at 2am
     description: cleans up old flow runs from the database
+
