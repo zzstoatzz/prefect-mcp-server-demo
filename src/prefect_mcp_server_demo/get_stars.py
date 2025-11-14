@@ -11,5 +11,4 @@ def get_stars(repo: str):
 
 @flow(name="GitHub Stars", log_prints=True)
 def github_stars(repos: list[str]):
-    for repo in repos:
-        get_stars(repo)
+    get_stars.map(repos)
