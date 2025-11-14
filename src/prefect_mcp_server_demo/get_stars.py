@@ -11,7 +11,7 @@ def get_stars(repo: str):
 
 @flow(name="GitHub Stars", log_prints=True)
 def github_stars(repos: list[str]):
-    get_stars.map(repos)
+    get_stars.map(repos).wait()
 
 
 if __name__ == "__main__":
