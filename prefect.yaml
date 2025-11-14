@@ -22,6 +22,8 @@ deployments:
       repos:
         - PrefectHQ/prefect
         - PrefectHQ/prefect-mcp-server
+        - jlowin/fastmcp
+        - MarshalX/atproto
     schedule:
       interval: 3600  # run every hour
     description: fetches github star counts for prefect repositories
