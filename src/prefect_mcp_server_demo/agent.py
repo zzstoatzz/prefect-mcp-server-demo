@@ -56,10 +56,12 @@ CLEANUP_AGENT_PROMPT = (
 
 
 class CleanupDecision(BaseModel):
-    """Decision about whether to proceed with cleanup."""
+    """Decision about whether to proceed with database cleanup."""
 
     approved: bool
-    confidence: float  # 0-1 confidence score
+    confidence: float = Field(
+        default=0.0, ge=0.0, le=1.0, description="Confidence score between 0 and 1"
+    )
     reasoning: str
     concerns: list[str] | None = None
 
