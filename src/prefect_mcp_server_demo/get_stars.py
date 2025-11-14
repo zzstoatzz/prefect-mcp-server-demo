@@ -5,7 +5,7 @@ import httpx
 @task
 def get_stars(repo: str):
     url = f"https://api.github.com/repos/{repo}"
-    count = httpx.get(url).json()["stargazer_count"]
+    count = httpx.get(url).json()["stargazers_count"]
     print(f"{repo} has {count} stars!")
 
 
