@@ -178,7 +178,9 @@ async def get_cleanup_approval(
     if config.approval_type == "human":
         print("Waiting for human approval...")
         approval = await pause_flow_run(
-            wait_for_input=CleanupApproval.with_initial_data(description=description_md),
+            wait_for_input=CleanupApproval.with_initial_data(
+                description=description_md
+            ),
             timeout=3600,
         )
         return approval.approved, approval.notes
@@ -193,7 +195,9 @@ async def get_cleanup_approval(
         )
 
         result = await cleanup_agent.run(prompt)
-        print(f"AI decision: approved={result.output.approved}, confidence={result.output.confidence}")
+        print(
+            f"AI decision: approved={result.output.approved}, confidence={result.output.confidence}"
+        )
         print(f"Reasoning: {result.output.reasoning}")
 
         if result.output.concerns:
@@ -218,7 +222,7 @@ async def delete_old_flow_runs(config: RetentionConfig) -> dict[str, int]:
 
 
 @flow(name="database-cleanup", log_prints=True)
-async def database_cleanup_entry(
+async def database_cleanup(
     config: RetentionConfig = RetentionConfig(),
 ) -> dict[str, int]:
     """Clean up old data from the database."""

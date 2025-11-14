@@ -27,7 +27,7 @@ deployments:
     description: fetches github star counts for prefect repositories
 
   - name: database-cleanup-deployment
-    entrypoint: src/prefect_mcp_server_demo/cleanup.py:database_cleanup_entry
+    entrypoint: src/prefect_mcp_server_demo/cleanup.py:database_cleanup
     work_pool:
       name: default
       job_variables:
