@@ -11,8 +11,15 @@ def get_stars(repo: str):
 
 @flow(name="GitHub Stars", log_prints=True)
 def github_stars(repos: list[str]):
-    get_stars.map(repos).wait()
+    get_stars.map(repos)
 
 
 if __name__ == "__main__":
-    github_stars(["PrefectHQ/prefect", "PrefectHQ/prefect-mcp-server"])
+    github_stars(
+        [
+            "PrefectHQ/prefect",
+            "PrefectHQ/prefect-mcp-server",
+            "jlowin/fastmcp",
+            "MarshalX/atproto",
+        ]
+    )
